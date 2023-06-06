@@ -60,14 +60,12 @@ function App(props) {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="models" >
-            <Route path="models" >
             <Route index element={<VehicleModelsList getVehicleModels={getVehicleModels} vehicleModels={vehicleModels} />} />
             <Route path="new" element={<VehicleModelForm getVehicleModels={getVehicleModels} vehicleModels={vehicleModels}/>} />
           </Route>
           <Route path="manufacturers" >
             <Route index element={<ManufacturersList getManufacturers={getManufacturers} manufacturers={manufacturers} />} />
             <Route path="new" element={<ManufacturerForm />} />
-          </Route>
           </Route>
           <Route path="automobiles" >
             <Route index element={<AutomobileList automobiles={automobiles} />} />
