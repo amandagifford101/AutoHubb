@@ -1,10 +1,7 @@
-import { useState, useEffect } from 'react';
 import React from 'react';
 
 function VehicleModelsList(props) {
     // const [hasDeleted, setHasDeleted] = useState([false]);
-
-let messageClasses = 'alert alert-success d-none mb-0';
 let tableClasses = 'table table-striped table-hover';
 
 return (

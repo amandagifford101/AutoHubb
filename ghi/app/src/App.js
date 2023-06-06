@@ -4,6 +4,8 @@ import MainPage from './MainPage';
 import Nav from './Nav';
 import VehicleModelsList from './VehicleModelsList';
 import VehicleModelForm from './VehicleModelsForm';
+import ManufacturersList from './ManufacturersList';
+import ManufacturerForm from './ManufacturerForm';
 
 
 //manufacturers and vehicleModels fetched here
@@ -49,6 +51,10 @@ function App(props) {
           <Route path="models" >
             <Route index element={<VehicleModelsList getVehicleModels={getVehicleModels} vehicleModels={vehicleModels} />} />
             <Route path="new" element={<VehicleModelForm getVehicleModels={getVehicleModels} vehicleModels={vehicleModels}/>} />
+          </Route>
+          <Route path="manufacturers" >
+            <Route index element={<ManufacturersList getManufacturers={getManufacturers} manufacturers={manufacturers} />} />
+            <Route path="new" element={<ManufacturerForm />} />
           </Route>
         </Routes>
       </div>
