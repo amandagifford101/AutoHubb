@@ -11,8 +11,12 @@ class Technician(models.Model):
 
 
 class AutomobileVO(models.Model):
+    import_id = models.PositiveSmallIntegerField(null=True)
     vin = models.CharField(max_length=17)
     sold = models.BooleanField()
+
+    def __str__(self):
+        return self.vin
 
 
 class Appointment(models.Model):
