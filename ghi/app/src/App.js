@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
 import VehicleModelsList from './VehicleModelsList';
+import VehicleModelForm from './VehicleModelsForm';
 
 
 //manufacturers and vehicleModels fetched here
@@ -33,7 +34,6 @@ function App(props) {
       const data = await response.json();
       setVehicleModels(data.models);
     }
-    console.log(vehicleModels);
   }
 
   useEffect(() => {
@@ -48,6 +48,7 @@ function App(props) {
           <Route path="/" element={<MainPage />} />
           <Route path="models" >
             <Route index element={<VehicleModelsList getVehicleModels={getVehicleModels} vehicleModels={vehicleModels} />} />
+            <Route path="new" element={<VehicleModelForm getVehicleModels={getVehicleModels} vehicleModels={vehicleModels}/>} />
           </Route>
         </Routes>
       </div>
