@@ -3,11 +3,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
 import VehicleModelsList from './VehicleModelsList';
+import VehicleModelForm from './VehicleModelsForm';
+import ManufacturersList from './ManufacturersList';
+import ManufacturerForm from './ManufacturerForm';
 import AutomobileList from './ListAutomobiles';
 import CreateAutomobile from './CreateAutomobile';
 
+
 //manufacturers and vehicleModels fetched here
-function App() {
+function App(props) {
 
   const [ manufacturers, setManufacturers ] = useState([]);
 
@@ -25,6 +29,7 @@ function App() {
   async function getVehicleModels() {
     const url = "http://localhost:8100/api/models/";
     const response = await fetch(url);
+    // console.log(response);
     if (response.ok) {
       const data = await response.json();
       setVehicleModels(data.models);
@@ -55,7 +60,14 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="models" >
+            <Route path="models" >
             <Route index element={<VehicleModelsList getVehicleModels={getVehicleModels} vehicleModels={vehicleModels} />} />
+            <Route path="new" element={<VehicleModelForm getVehicleModels={getVehicleModels} vehicleModels={vehicleModels}/>} />
+          </Route>
+          <Route path="manufacturers" >
+            <Route index element={<ManufacturersList getManufacturers={getManufacturers} manufacturers={manufacturers} />} />
+            <Route path="new" element={<ManufacturerForm />} />
+          </Route>
           </Route>
           <Route path="automobiles" >
             <Route index element={<AutomobileList automobiles={automobiles} />} />

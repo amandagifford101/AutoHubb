@@ -1,10 +1,7 @@
-import { useState, useEffect } from 'react';
 import React from 'react';
 
 function VehicleModelsList(props) {
     // const [hasDeleted, setHasDeleted] = useState([false]);
-
-let messageClasses = 'alert alert-success d-none mb-0';
 let tableClasses = 'table table-striped table-hover';
 
 return (
@@ -22,7 +19,7 @@ return (
           return (
             <tr key={vehicleModel.id}>
               <td>{ vehicleModel.name }</td>
-              <td>{ vehicleModel.manufacturer }</td>
+              <td>{ vehicleModel.manufacturer.id }</td>
               <td><img src={ vehicleModel.picture_url } className="thumbnail" width="12%"/></td>
             </tr>
           );
