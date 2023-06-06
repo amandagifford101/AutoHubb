@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
 import VehicleModelsList from './VehicleModelsList';
-import React, { useEffect, useState } from 'react';
+import AutomobileList from './ListAutomobiles';
+import CreateAutomobile from './CreateAutomobile';
 
 //manufacturers and vehicleModels fetched here
 function App() {
@@ -19,10 +20,6 @@ function App() {
     }
   }
 
-    useEffect(() => {
-      getManufacturers();
-    }, []);
-
   const [vehicleModels, setVehicleModels] = useState([]);
 
   async function getVehicleModels() {
@@ -30,12 +27,25 @@ function App() {
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      setVehicleModels(data.vehicleModels);
+      setVehicleModels(data.models);
+    }
+  }
+
+  const [automobiles, setAutomobiles] = useState([]);
+
+  async function getAutomobiles() {
+    const url = "http://localhost:8100/api/automobiles/";
+    const response = await fetch(url);
+    if (response.ok) {
+      const data = await response.json();
+      setAutomobiles(data.autos);
     }
   }
 
   useEffect(() => {
     getVehicleModels();
+    getManufacturers();
+    getAutomobiles();
   }, []);
 
   return (
@@ -44,7 +54,13 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route index element={<VehicleModelsList getVehicleModels={getVehicleModels} vehicleModels={vehicleModels} />} />
+          <Route path="models" >
+            <Route index element={<VehicleModelsList getVehicleModels={getVehicleModels} vehicleModels={vehicleModels} />} />
+          </Route>
+          <Route path="automobiles" >
+            <Route index element={<AutomobileList automobiles={automobiles} />} />
+            <Route path="create" element={<CreateAutomobile getAutomobiles={getAutomobiles} automobiles={automobiles} getVehicleModels={getVehicleModels} vehicleModels={vehicleModels} />} />
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>
