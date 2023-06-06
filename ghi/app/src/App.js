@@ -3,10 +3,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
 import VehicleModelsList from './VehicleModelsList';
-import React, { useEffect, useState } from 'react';
+
 
 //manufacturers and vehicleModels fetched here
-function App() {
+function App(props) {
 
   const [ manufacturers, setManufacturers ] = useState([]);
 
@@ -28,10 +28,12 @@ function App() {
   async function getVehicleModels() {
     const url = "http://localhost:8100/api/models/";
     const response = await fetch(url);
+    // console.log(response);
     if (response.ok) {
       const data = await response.json();
-      setVehicleModels(data.vehicleModels);
+      setVehicleModels(data.models);
     }
+    console.log(vehicleModels);
   }
 
   useEffect(() => {
@@ -44,7 +46,9 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route index element={<VehicleModelsList getVehicleModels={getVehicleModels} vehicleModels={vehicleModels} />} />
+          <Route path="models" >
+            <Route index element={<VehicleModelsList getVehicleModels={getVehicleModels} vehicleModels={vehicleModels} />} />
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>

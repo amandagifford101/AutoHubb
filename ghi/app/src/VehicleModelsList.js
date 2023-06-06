@@ -22,7 +22,7 @@ return (
           return (
             <tr key={vehicleModel.id}>
               <td>{ vehicleModel.name }</td>
-              <td>{ vehicleModel.manufacturer }</td>
+              <td>{ vehicleModel.manufacturer.id }</td>
               <td><img src={ vehicleModel.picture_url } className="thumbnail" width="12%"/></td>
             </tr>
           );
