@@ -8,7 +8,7 @@ class AutomobileVO(models.Model):
 class Salesperson(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    employee_id = models.PositiveSmallIntegerField()
+    employee_id = models.CharField(max_length=20)
 
     def __str__(self):
         return self.first_name + self.last_name
@@ -28,15 +28,16 @@ class Sale(models.Model):
     automobile = models.ForeignKey(
         AutomobileVO,
         related_name="automobile",
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
     )
     salesperson = models.ForeignKey(
         Salesperson,
         related_name="salesperson",
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
+        null=True
     )
     customer = models.ForeignKey(
         Customer,
         related_name="customer",
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
     )
