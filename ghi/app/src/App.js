@@ -8,6 +8,10 @@ import ManufacturersList from './ManufacturersList';
 import ManufacturerForm from './ManufacturerForm';
 import AutomobileList from './ListAutomobiles';
 import CreateAutomobile from './CreateAutomobile';
+import SalespeopleList from './SalespeopleList';
+import SalespersonForm from './SalespersonForm';
+import CustomerForm from './CustomerForm';
+import CustomersList from './CustomersList';
 import TechnicianList from './ListTechnicians';
 import CreateTechnician from './CreateTechnician';
 import AppointmentList from './ListAppointments';
@@ -98,6 +102,14 @@ function App(props) {
           <Route path="automobiles" >
             <Route index element={<AutomobileList automobiles={automobiles} />} />
             <Route path="create" element={<CreateAutomobile getAutomobiles={getAutomobiles} automobiles={automobiles} getVehicleModels={getVehicleModels} vehicleModels={vehicleModels} />} />
+          </Route>
+          <Route path="salespeople" >
+            <Route index element={<SalespeopleList />} />
+            <Route path="create" element={<SalespersonForm />} />
+          </Route>
+          <Route path="customers" >
+            <Route index element={<CustomersList />} />
+            <Route path="create" element={<CustomerForm />} />
           </Route>
           <Route path="technicians">
             <Route index element={<TechnicianList getTechnicians={getTechnicians} technicians={technicians} />} />
