@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 
 function CreateAutomobile(props) {
 
-    console.log(props.vehicleModels)
-
     const [color, setColor] = useState('');
     const [year, setYear] = useState('');
     const [vin, setVin] = useState('');
