@@ -4,7 +4,7 @@ function AppointmentList(props){
 
     const scheduledAppts = props.appointments.filter(appointment => appointment.status === "scheduled")
 
-    function isVin(vin) {
+    function isVip(vin) {
         let sold = []
         for (const automobile of props.automobiles) {
             if (vin === automobile.vin) {
@@ -91,7 +91,7 @@ function AppointmentList(props){
                     return (
                         <tr key={appointment.id}>
                             <td>{ appointment.vin }</td>
-                            <td>{ isVin(appointment.vin) }</td>
+                            <td>{ isVip(appointment.vin) }</td>
                             <td>{ appointment.customer }</td>
                             <td>{ getDate(appointment.date_time) }</td>
                             <td>{ getTime(appointment.date_time) }</td>

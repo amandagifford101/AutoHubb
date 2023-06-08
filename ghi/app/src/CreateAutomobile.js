@@ -46,8 +46,8 @@ function CreateAutomobile(props) {
         };
         const response = await fetch(autoUrl, fetchConfig);
         if (response.ok) {
-            const newConference = await response.json();
-            console.log(newConference);
+            const newAutomobile = await response.json();
+            console.log(newAutomobile);
             props.getAutomobiles()
 
             setColor('');
