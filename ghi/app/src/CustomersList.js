@@ -19,6 +19,24 @@ function CustomersList(props) {
         getCustomers();
     })
 
+    const deleteCustomer = (id) => async () => {
+
+        try {
+            const response = await fetch(`http://localhost:8090/api/customers/${id}/delete/`, {
+                method: 'DELETE',
+              });
+            if (!response.ok) {
+                console.error("Deletion Failed")
+            } else {
+                setCustomers(customers.filter(customer => customer.id !== id));
+            }
+
+        } catch (error) {
+            console.error("Another fail", error)
+        }
+    }
+
+
     return (
         <>
         <table className={tableClasses}>
@@ -28,6 +46,7 @@ function CustomersList(props) {
             <th>Last Name</th>
             <th>Address</th>
             <th>Phone Number</th>
+            <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -38,6 +57,7 @@ function CustomersList(props) {
                 <td>{ customer.last_name }</td>
                 <td>{ customer.address }</td>
                 <td>{ customer.phone_number }</td>
+                <td><button onClick={deleteCustomer(customer.id)}>Delete</button></td>
                 </tr>
             );
             })}

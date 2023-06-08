@@ -41,6 +41,7 @@ class SalesListEncoder(ModelEncoder):
         "automobile",
         "salesperson",
         "customer",
+        "id",
     ]
     encoders = {
         "automobile": AutomobileVOListEncoder(),

@@ -19,6 +19,23 @@ function SalespeopleList(props) {
         getSalespeople();
     })
 
+    const deleteSalesperson = (id) => async () => {
+
+        try {
+            const response = await fetch(`http://localhost:8090/api/salesperson/${id}/delete/`, {
+                method: 'DELETE',
+              });
+            if (!response.ok) {
+                console.error("Deletion Failed")
+            } else {
+                setSalespeople(salespeople.filter(salesperson => salesperson.id !== id));
+            }
+
+        } catch (error) {
+            console.error("Another fail", error)
+        }
+    }
+
     return (
         <>
         <table className={tableClasses}>
@@ -27,15 +44,17 @@ function SalespeopleList(props) {
             <th>First Name</th>
             <th>Last Name</th>
             <th>Employee Id</th>
+            <th>Delete</th>
             </tr>
         </thead>
         <tbody>
             {salespeople.map(salesP => {
             return (
-                <tr key={salesP.employee_id}>
+                <tr key={salesP.id}>
                 <td>{ salesP.first_name }</td>
                 <td>{ salesP.last_name }</td>
                 <td>{ salesP.employee_id }</td>
+                <td><button onClick={deleteSalesperson(salesP.id)}>Delete</button></td>
                 </tr>
             );
             })}
