@@ -18,6 +18,7 @@ import TechnicianList from './ListTechnicians';
 import CreateTechnician from './CreateTechnician';
 import AppointmentList from './ListAppointments';
 import AppointmentHistory from './AppointmentHistory';
+import CreateAppointment from './CreateAppointment';
 
 
 //manufacturers and vehicleModels fetched here
@@ -124,6 +125,7 @@ function App(props) {
           <Route path="appointments">
             <Route index element={<AppointmentList appointments={appointments} automobiles={automobiles} getAppointments={getAppointments} />} />
             <Route path="history" element={<AppointmentHistory appointments={appointments} automobiles={automobiles} getAppointments={getAppointments} />} />
+            <Route path="create" element={<CreateAppointment getAppointments={getAppointments} technicians={technicians} />} />
           </Route>
         </Routes>
       </div>
