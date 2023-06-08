@@ -12,6 +12,8 @@ import SalespeopleList from './SalespeopleList';
 import SalespersonForm from './SalespersonForm';
 import CustomerForm from './CustomerForm';
 import CustomersList from './CustomersList';
+import SaleForm from './CreateSale';
+import SalesList from './SaleList';
 import TechnicianList from './ListTechnicians';
 import CreateTechnician from './CreateTechnician';
 import AppointmentList from './ListAppointments';
@@ -110,6 +112,10 @@ function App(props) {
           <Route path="customers" >
             <Route index element={<CustomersList />} />
             <Route path="create" element={<CustomerForm />} />
+          </Route>
+          <Route path="sales" >
+            <Route index element={<SalesList />} />
+            <Route path="create" element={<SaleForm getAutomobiles={getAutomobiles} automobiles={automobiles} />} />
           </Route>
           <Route path="technicians">
             <Route index element={<TechnicianList getTechnicians={getTechnicians} technicians={technicians} />} />
