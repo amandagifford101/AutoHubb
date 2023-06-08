@@ -12,6 +12,8 @@ import SalespeopleList from './SalespeopleList';
 import SalespersonForm from './SalespersonForm';
 import CustomerForm from './CustomerForm';
 import CustomersList from './CustomersList';
+import SaleForm from './CreateSale';
+import SalesList from './SaleList';
 
 
 //manufacturers and vehicleModels fetched here
@@ -82,6 +84,10 @@ function App(props) {
           <Route path="customers" >
             <Route index element={<CustomersList />} />
             <Route path="create" element={<CustomerForm />} />
+          </Route>
+          <Route path="sales" >
+            <Route index element={<SalesList />} />
+            <Route path="create" element={<SaleForm getAutomobiles={getAutomobiles} automobiles={automobiles} />} />
           </Route>
         </Routes>
       </div>

@@ -21,6 +21,7 @@ class SalespersonListEncoder(ModelEncoder):
         "first_name",
         "last_name",
         "employee_id",
+        "id",
     ]
 
 class CustomersListEncoder(ModelEncoder):
@@ -30,6 +31,7 @@ class CustomersListEncoder(ModelEncoder):
         "last_name",
         "address",
         "phone_number",
+        "id",
     ]
 
 class SalesListEncoder(ModelEncoder):
