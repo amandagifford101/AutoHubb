@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function AppointmentHistory(props) {
 
-    let listedAppts = props.appointments
+    const [searchedVin, setSearchedVin] = useState('');
+    const [appointments, setAppointments] = useState([]);
 
-    const [searchedVin, setSearchedVin] = useState('')
+    async function getAppointments() {
+        const url = "http://localhost:8080/api/appointments/";
+        const response = await fetch(url);
+        if (response.ok) {
+          const data = await response.json();
+          setAppointments(data.appointments);
+        }
+      }
+    
+      useEffect(() => {
+        getAppointments();
+      }, []);
 
 
     function handleSearch(event) {
@@ -12,25 +24,26 @@ function AppointmentHistory(props) {
         setSearchedVin(value);
     }
 
-    function handleSearchSubmit() {
-        const filteredAppts = props.appointments.filter(appointment => appointment.vin === searchedVin)
+    function handleSearchSubmit(event) {
+        event.preventDefault();
+        const data = props.appointments.filter(appointment => appointment.vin === searchedVin);
         if (searchedVin) {
-            listedAppts = filteredAppts
+            setAppointments(data);
         }
     }
 
     function isVip(vin) {
-        let sold = []
+        let sold = [];
         for (const automobile of props.automobiles) {
             if (vin === automobile.vin) {
-                sold.push(vin)
+                sold.push(vin);
             }
         }
         if (sold.length > 0 ){
-            return "Yes"
+            return "Yes";
         }
         else {
-            return "No"
+            return "No";
         }
     }
 
@@ -40,25 +53,31 @@ function AppointmentHistory(props) {
         const day = date.getDate();
         const year = date.getFullYear();
         const fullDate = (month+1) + "/" + day + "/" + year;
-        return fullDate
+        return fullDate;
     }
 
     function getTime(datetime) {
         const date = new Date(datetime);
         const timestamp = date.getTime();
-        const convertTime = new Date(timestamp)
-        const time = convertTime.toLocaleTimeString("en-US")
-        return time
+        const convertTime = new Date(timestamp);
+        const time = convertTime.toLocaleTimeString("en-US");
+        return time;
     }
 
     return (
         <>
         <h1>Service History</h1>
-        <div className="input-group mb-3">
+        {/* <div className="input-group mb-3">
             <form onSubmit={handleSearchSubmit()} >
                 <input type="text" value={searchedVin} onChange={handleSearch} className="form-control" placeholder="Filter list by VIN" name="search" id="search" aria-describedby="inputGroup-sizing-default" />
             </form>
-        </div>
+        </div> */}
+        <form onSubmit={handleSearchSubmit}>
+            <div className="input-group mb-3">
+                <input type="text" value={searchedVin} onChange={handleSearch} className="form-control" placeholder="Search by VIN" aria-label="vinSearch" aria-describedby="button-addon2" />
+                <button className="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+            </div>
+        </form>
         <table className="table table-striped">
             <thead>
                 <tr>
@@ -73,7 +92,7 @@ function AppointmentHistory(props) {
                 </tr>
             </thead>
             <tbody>
-                {listedAppts.map(appointment => {
+                {appointments.map(appointment => {
                     return (
                         <tr key={appointment.id}>
                             <td>{ appointment.vin }</td>
@@ -93,4 +112,4 @@ function AppointmentHistory(props) {
     );
 }
 
-export default AppointmentHistory
+export default AppointmentHistory;
