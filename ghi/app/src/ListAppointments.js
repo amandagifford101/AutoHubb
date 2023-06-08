@@ -74,6 +74,7 @@ function AppointmentList(props){
 
     return (
         <>
+        <h1>Scheduled Appointments</h1>
         <table className="table table-striped">
             <thead>
                 <tr>
@@ -98,10 +99,10 @@ function AppointmentList(props){
                             <td>{ appointment.technician.first_name } {appointment.technician.last_name}</td>
                             <td>{ appointment.reason }</td>
                             <td>
-                                <button onClick={() => cancelAppointment(appointment)}>Cancel</button>
+                                <button type="button" className="btn btn-danger" onClick={() => cancelAppointment(appointment)}>Cancel</button>
                             </td>
                             <td>
-                                <button onClick={() => finishAppointment(appointment)}>Finish</button>
+                                <button type="button" className="btn btn-success" onClick={() => finishAppointment(appointment)}>Finish</button>
                             </td>
                         </tr>
                     );

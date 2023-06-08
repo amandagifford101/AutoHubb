@@ -10,9 +10,9 @@ function Nav() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Inventory</a>
-              <ul class="dropdown-menu">
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Inventory</a>
+              <ul className="dropdown-menu">
                 <li><NavLink className="dropdown-item" to="/manufacturers">Manunfacturers</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/manufacturers/create">Add Madufacturer</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/models">Models</NavLink></li>
@@ -21,9 +21,9 @@ function Nav() {
                 <li><NavLink className="dropdown-item" to="/automobiles/create">Add Vehicle</NavLink></li>
               </ul>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Sales</a>
-              <ul class="dropdown-menu">
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Sales</a>
+              <ul className="dropdown-menu">
                 <li><NavLink className="dropdown-item" to="/salespeople">Salespeople</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/salespeople/create">Add Salesperson</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/customers">Customers</NavLink></li>
@@ -32,9 +32,9 @@ function Nav() {
                 <li><NavLink className="dropdown-item" to="/sales/create">Add Sale</NavLink></li>
               </ul>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Service</a>
-              <ul class="dropdown-menu">
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Service</a>
+              <ul className="dropdown-menu">
                 <li><NavLink className="dropdown-item" to="/technicians">Technicians</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/technicians/create">Add Technician</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/appointments">Appointments</NavLink></li>
