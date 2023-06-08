@@ -1,22 +1,29 @@
 import React, {useEffect, useState} from 'react';
 
 function SaleForm(props) {
-    // const [automobiles, setAutomobiles] = useState([]);
+
     const [customers, setCustomers] = useState([]);
     const [salespeople, setSalespeople] = useState([]);
-    const [automobile, setAutomobile] = useState("");
+    // const [automobile, setAutomobile] = useState("");
     const [customer, setCustomer] = useState("");
     const [salesperson, setSalesperson] = useState("");
     const [price, setPrice] = useState("");
+    const [filteredAutomobiles, setFilteredAutomobiles] = useState([]);
+    const [filteredAutomobile, setFilteredAutomobile] = useState("");
+
+    const filterAutomobiles = () => {
+        const filteredList = props.automobiles.filter(automobile => automobile.sold === false);
+        setFilteredAutomobiles(filteredList);
+    }
 
     const handlePriceChange = (event) => {
         const value = event.target.value;
         setPrice(value);
     }
 
-    const handleAutomobileChange = (event) => {
+    const handleFilteredAutomobileChange = (event) => {
         const value = event.target.value;
-        setAutomobile(value);
+        setFilteredAutomobile(value);
     }
 
     const handleCustomerChange = (event) => {
@@ -48,6 +55,10 @@ function SaleForm(props) {
     }
 
     useEffect(() => {
+        filterAutomobiles();
+    }, [props.automobiles]);
+
+    useEffect(() => {
         getCustomers();
         getSalespeople();
     }, []);
@@ -60,7 +71,7 @@ function SaleForm(props) {
         const data = {};
 
         data.customer = customer;
-        data.automobile = automobile;
+        data.automobile = filteredAutomobile;
         data.salesperson = salesperson;
         data.price = price;
         console.log(data);
@@ -79,7 +90,7 @@ function SaleForm(props) {
             console.log(newSale);
             // getSalesperson();
             setCustomer('');
-            setAutomobile('');
+            setFilteredAutomobile('');
             setSalesperson('');
             setPrice('');
         }
@@ -110,9 +121,9 @@ function SaleForm(props) {
                     </div>
                     <div className="col">
                     <div className="mb-3">
-                            <select onChange={handleAutomobileChange} value={automobile} required name="automobile" id="automobile" className="form-select">
+                            <select onChange={handleFilteredAutomobileChange} value={filteredAutomobile} required name="automobile" id="automobile" className="form-select">
                                 <option value="">Choose an automobile</option>
-                                {props.automobiles.map(automobile => {
+                                {filteredAutomobiles.map(automobile => {
                                     return (
                                         <option key={automobile.id} value={automobile.id}>{ automobile.year } { automobile.model.name }</option>
                                     );
