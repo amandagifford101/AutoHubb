@@ -30,8 +30,8 @@ function App(props) {
     const url = 'http://localhost:8100/api/manufacturers/';
     const response = await fetch(url);
     if (response.ok) {
-      const data = await response.json()
-      setManufacturers(data.manufacturers)
+      const data = await response.json();
+      setManufacturers(data.manufacturers);
     }
   }
 
@@ -40,7 +40,6 @@ function App(props) {
   async function getVehicleModels() {
     const url = "http://localhost:8100/api/models/";
     const response = await fetch(url);
-    // console.log(response);
     if (response.ok) {
       const data = await response.json();
       setVehicleModels(data.models);

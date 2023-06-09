@@ -114,9 +114,6 @@ function VehicleModelForm(props) {
                     </div>
                     <button className="btn btn-lg btn-primary">Create Vehicle Model</button>
                 </form>
-                {/* <div className="alert alert-success d-none mb-0" id="success-message">
-                    Congratulations! You're all organized'
-                </div> */}
                 </div>
             </div>
             </div>
