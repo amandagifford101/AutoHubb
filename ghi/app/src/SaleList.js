@@ -8,7 +8,16 @@ function SalesList(props) {
     const [ salespeople, setSalespeople ] = useState([]);
     const [ searchedSalesperson, setSearchedSalesperson ] = useState("");
     const [ allSales, setAllSales ] = useState([]);
+    const [automobiles, setAutomobiles] = useState([]);
 
+    async function getAutomobiles() {
+        const url = "http://localhost:8100/api/automobiles/";
+        const response = await fetch(url);
+        if (response.ok) {
+        const data = await response.json();
+        setAutomobiles(data.autos);
+        }
+    }
 
     const handleSalespersonFilterChange = () => {
         const filteredSales = allSales.filter(sale => sale.salesperson.id === parseInt(searchedSalesperson));
@@ -21,9 +30,8 @@ function SalesList(props) {
     const handleSalespersonChange = (event) => {
         const value = event.target.value;
         setSearchedSalesperson(value);
-        // console.log(value);
-        // console.log(searchedSalesperson);
     }
+
     async function getSales() {
         const url = 'http://localhost:8090/api/sales/';
         const response = await fetch(url);
@@ -47,7 +55,7 @@ function SalesList(props) {
     useEffect(() => {
         handleSalespersonFilterChange();
     },[searchedSalesperson, allSales]);
-    
+
 
     useEffect(() => {
         getSales();

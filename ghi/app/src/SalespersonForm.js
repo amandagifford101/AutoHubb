@@ -40,9 +40,8 @@ function SalespersonForm(props) {
 
         const response = await fetch(salespersonUrl, fetchConfig);
         if (response.ok) {
-            const newSalesperson = await response.json();
-            console.log(newSalesperson);
-            // getSalesperson();
+            props.getSalespeople();
+
             setFirstName('');
             setLastName('');
             setEmployeeId('');

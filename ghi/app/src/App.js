@@ -21,10 +21,29 @@ import AppointmentHistory from './AppointmentHistory';
 import CreateAppointment from './CreateAppointment';
 
 
-//manufacturers and vehicleModels fetched here
 function App(props) {
 
   const [ manufacturers, setManufacturers ] = useState([]);
+  const [ customers, setCustomers ] = useState([]);
+  const [ salespeople, setSalespeople ] = useState([]);
+
+  async function getSalespeople() {
+      const url = 'http://localhost:8090/api/salespeople/';
+      const response = await fetch(url);
+      if (response.ok) {
+          const data = await response.json()
+          setSalespeople(data.salesperson)
+      }
+  }
+
+    async function getCustomers() {
+        const url = 'http://localhost:8090/api/customers/';
+        const response = await fetch(url);
+        if (response.ok) {
+            const data = await response.json()
+            setCustomers(data.customers)
+        }
+    }
 
   async function getManufacturers() {
     const url = 'http://localhost:8100/api/manufacturers/';
@@ -85,6 +104,8 @@ function App(props) {
     getAutomobiles();
     getTechnicians();
     getAppointments();
+    getCustomers();
+    getSalespeople();
   }, []);
 
   return (
@@ -106,12 +127,12 @@ function App(props) {
             <Route path="create" element={<CreateAutomobile getAutomobiles={getAutomobiles} automobiles={automobiles} getVehicleModels={getVehicleModels} vehicleModels={vehicleModels} />} />
           </Route>
           <Route path="salespeople" >
-            <Route index element={<SalespeopleList />} />
-            <Route path="create" element={<SalespersonForm />} />
+            <Route index element={<SalespeopleList salespeople={salespeople} getSalespeople={getSalespeople} />} />
+            <Route path="create" element={<SalespersonForm getSalespeople={getSalespeople} />} />
           </Route>
           <Route path="customers" >
-            <Route index element={<CustomersList />} />
-            <Route path="create" element={<CustomerForm />} />
+            <Route index element={<CustomersList customers={customers} getCustomers={getCustomers}/>} />
+            <Route path="create" element={<CustomerForm getCustomers={getCustomers} />} />
           </Route>
           <Route path="sales" >
             <Route index element={<SalesList />} />

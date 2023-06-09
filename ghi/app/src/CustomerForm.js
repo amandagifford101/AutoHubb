@@ -47,9 +47,8 @@ function CustomerForm(props) {
 
         const response = await fetch(customerUrl, fetchConfig);
         if (response.ok) {
-            const newCustomer = await response.json();
-            console.log(newCustomer);
-            // getSalesperson();
+            props.getCustomers()
+
             setFirstName('');
             setLastName('');
             setAddress('');
