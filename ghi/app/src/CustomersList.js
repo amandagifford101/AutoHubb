@@ -1,34 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
 function CustomersList(props) {
-    // const [hasDeleted, setHasDeleted] = useState([false]);
+
     let tableClasses = 'table table-striped table-hover';
-
-    const [ customers, setCustomers ] = useState([]);
-
-    async function getCustomers() {
-        const url = 'http://localhost:8090/api/customers/';
-        const response = await fetch(url);
-        if (response.ok) {
-            const data = await response.json()
-            setCustomers(data.customers)
-        }
-    }
-
-    useEffect(() => {
-        getCustomers();
-    })
 
     const deleteCustomer = (id) => async () => {
 
         try {
-            const response = await fetch(`http://localhost:8090/api/customers/${id}/delete/`, {
+            const response = await fetch(`http://localhost:8090/api/customer/${id}/delete/`, {
                 method: 'DELETE',
               });
             if (!response.ok) {
                 console.error("Deletion Failed")
             } else {
-                setCustomers(customers.filter(customer => customer.id !== id));
+                props.getCustomers();
             }
 
         } catch (error) {
@@ -50,9 +35,9 @@ function CustomersList(props) {
             </tr>
         </thead>
         <tbody>
-            {customers.map(customer => {
+            {props.customers.map(customer => {
             return (
-                <tr key={customer.phone_number}>
+                <tr key={customer.id}>
                 <td>{ customer.first_name }</td>
                 <td>{ customer.last_name }</td>
                 <td>{ customer.address }</td>

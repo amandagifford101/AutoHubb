@@ -54,7 +54,6 @@ function CreateAppointment(props) {
         const response = await fetch(apptUrl, fetchConfig);
         if (response.ok) {
             const newAppointment = await response.json();
-            console.log(newAppointment);
             props.getAppointments()
 
             setVin('');

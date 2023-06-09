@@ -74,7 +74,6 @@ function SaleForm(props) {
         data.automobile = filteredAutomobile;
         data.salesperson = salesperson;
         data.price = price;
-        console.log(data);
         const salesUrl = "http://localhost:8090/api/sales/";
         const fetchConfig = {
             method: "post",
@@ -87,8 +86,6 @@ function SaleForm(props) {
         const response = await fetch(salesUrl, fetchConfig);
         if (response.ok) {
             const newSale = await response.json();
-            console.log(newSale);
-            // getSalesperson();
             setCustomer('');
             setFilteredAutomobile('');
             setSalesperson('');

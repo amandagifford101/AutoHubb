@@ -1,23 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 function SalespeopleList(props) {
-    // const [hasDeleted, setHasDeleted] = useState([false]);
     let tableClasses = 'table table-striped table-hover';
-
-    const [ salespeople, setSalespeople ] = useState([]);
-
-    async function getSalespeople() {
-        const url = 'http://localhost:8090/api/salespeople/';
-        const response = await fetch(url);
-        if (response.ok) {
-            const data = await response.json()
-            setSalespeople(data.salesperson)
-        }
-    }
-
-    useEffect(() => {
-        getSalespeople();
-    })
 
     const deleteSalesperson = (id) => async () => {
 
@@ -28,7 +12,7 @@ function SalespeopleList(props) {
             if (!response.ok) {
                 console.error("Deletion Failed")
             } else {
-                setSalespeople(salespeople.filter(salesperson => salesperson.id !== id));
+                props.getSalespeople();
             }
 
         } catch (error) {
@@ -48,7 +32,7 @@ function SalespeopleList(props) {
             </tr>
         </thead>
         <tbody>
-            {salespeople.map(salesP => {
+            {props.salespeople.map(salesP => {
             return (
                 <tr key={salesP.id}>
                 <td>{ salesP.first_name }</td>

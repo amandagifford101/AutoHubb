@@ -26,9 +26,7 @@ function ManufacturerForm(props) {
 
         const response = await fetch(manufacturerUrl, fetchConfig);
         if (response.ok) {
-            const newManufacturer = await response.json();
-            console.log(newManufacturer);
-            // getManufacturer();
+            props.getManufacturers();
             setManufacturer('');
         }
 

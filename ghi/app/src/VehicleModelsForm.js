@@ -45,8 +45,7 @@ function VehicleModelForm(props) {
         data.manufacturer_id = manufacturer;
         data.picture_url = pictureUrl;
         data.name = name;
-        console.log(data);
-        console.log(JSON.stringify(data));
+
         const vehicleModelUrl = "http://localhost:8100/api/models/";
         const fetchConfig = {
             method: "post",
@@ -59,7 +58,6 @@ function VehicleModelForm(props) {
         const response = await fetch(vehicleModelUrl, fetchConfig);
         if (response.ok) {
             const newVehicleModel = await response.json();
-            console.log(newVehicleModel);
 
             props.getVehicleModels();
             setName('');

@@ -99,7 +99,7 @@ Creating a vehicle model requires the model name, a URL of an image, and the id 
 
 ```
 {
-  "name": "Sebring",
+  "name": "Rav4",
   "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
   "manufacturer_id": 1
 }
@@ -109,7 +109,7 @@ Updating a vehicle model can take the name and/or the picture URL. It is not pos
 
 ```
 {
-  "name": "Sebring",
+  "name": "S8",
   "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg"
 }
 ```
@@ -120,12 +120,12 @@ Getting the detail of a vehicle model, or the return value from creating or upda
 {
   "href": "/api/models/1/",
   "id": 1,
-  "name": "Sebring",
+  "name": "Highlander",
   "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
   "manufacturer": {
     "href": "/api/manufacturers/1/",
     "id": 1,
-    "name": "Daimler-Chrysler"
+    "name": "Toyota"
   }
 }
 ```
@@ -138,12 +138,12 @@ Getting a list of vehicle models returns a list of the detail information with t
     {
       "href": "/api/models/1/",
       "id": 1,
-      "name": "Sebring",
+      "name": "Highlander",
       "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
       "manufacturer": {
         "href": "/api/manufacturers/1/",
         "id": 1,
-        "name": "Daimler-Chrysler"
+        "name": "Toyota"
       }
     }
   ]
@@ -192,12 +192,12 @@ to get the details for the car with the VIN "1C3CC5FB2AN120174". The details for
   "model": {
     "href": "/api/models/1/",
     "id": 1,
-    "name": "Sebring",
+    "name": "Highlander",
     "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
     "manufacturer": {
       "href": "/api/manufacturers/1/",
       "id": 1,
-      "name": "Daimler-Chrysler"
+      "name": "Toyota"
     }
   },
   "sold": false
@@ -228,12 +228,12 @@ Getting a list of automobiles returns a dictionary with the key "autos" set to a
       "model": {
         "href": "/api/models/1/",
         "id": 1,
-        "name": "Sebring",
+        "name": "Highlander",
         "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
         "manufacturer": {
           "href": "/api/manufacturers/1/",
           "id": 1,
-          "name": "Daimler-Chrysler"
+          "name": "Toyota"
         }
       },
       "sold": false
@@ -556,6 +556,6 @@ Once the request is submitted, upon succesful creation the details of the new ap
 }
 ```
 
-## AutomobileVO 
+## AutomobileVO
 
 This is a value object based on the automobiles in the inventory microservice. They are created via a poller which polls the inventory microservice database every 60 seconds, checks for changes to the automobile objects, and updates the service microservice database accordingly.
