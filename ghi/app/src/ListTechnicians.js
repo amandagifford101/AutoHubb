@@ -10,12 +10,11 @@ function TechnicianList(props) {
             };
             const response = await fetch(technicianUrl, fetchConfig);
             if (response.ok) {
-                console.log("technician deleted")
                 props.getTechnicians()
             };
         }
         catch (e) {
-            console.log(e)
+            console.log("Delete failed")
         }
     }
 

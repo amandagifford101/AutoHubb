@@ -28,7 +28,7 @@ function ManufacturerForm(props) {
         if (response.ok) {
             const newManufacturer = await response.json();
             console.log(newManufacturer);
-            // getManufacturer();
+            props.getManufacturers();
             setManufacturer('');
         }
 
@@ -59,9 +59,6 @@ function ManufacturerForm(props) {
                     </div>
                     <button className="btn btn-lg btn-primary">Create Manufacturer</button>
                 </form>
-                {/* <div className="alert alert-success d-none mb-0" id="success-message">
-                    Congratulations! You're all organized'
-                </div> */}
                 </div>
             </div>
             </div>

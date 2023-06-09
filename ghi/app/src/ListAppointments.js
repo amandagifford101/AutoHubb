@@ -39,7 +39,7 @@ function AppointmentList(props){
     const cancelAppointment = async(appointment) => {
         try{
             const canceled = appointment.id;
-            const apptUrl = `http://localhost:8080/api/appointments/${canceled}/cancel`;
+            const apptUrl = `http://localhost:8080/api/appointments/${canceled}/cancel/`;
             const fetchConfig = {
                 method: "put",
             };
@@ -57,7 +57,7 @@ function AppointmentList(props){
     const finishAppointment = async(appointment) => {
         try{
             const finished = appointment.id;
-            const apptUrl = `http://localhost:8080/api/appointments/${finished}/finish`;
+            const apptUrl = `http://localhost:8080/api/appointments/${finished}/finish/`;
             const fetchConfig = {
                 method: "put",
             };
