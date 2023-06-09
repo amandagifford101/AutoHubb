@@ -21,11 +21,6 @@ function ManufacturersList(props) {
             })}
           </tbody>
         </table>
-        {/* {hasDeleted && (
-            <div className={messageClasses} id="success-message">
-            The shoes have been deleted!
-        </div>
-        )} */}
     </>
 
     );
