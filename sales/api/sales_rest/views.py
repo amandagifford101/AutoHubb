@@ -1,11 +1,9 @@
-from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from .models import AutomobileVO, Sale, Salesperson, Customer
-from django.db import IntegrityError
 import json
 from common.json import ModelEncoder
-# Create your views here.
+
 
 class AutomobileVOListEncoder(ModelEncoder):
     model = AutomobileVO
@@ -50,7 +48,7 @@ class SalesListEncoder(ModelEncoder):
     }
 
 @require_http_methods(["GET", "POST"])
-def list_salespeople(request, id=None):
+def list_salespeople(request):
     if request.method == "GET":
         salespeople = Salesperson.objects.all()
         return JsonResponse(
@@ -60,17 +58,21 @@ def list_salespeople(request, id=None):
         )
     else:
         content = json.loads(request.body)
-
-        salesperson = Salesperson.objects.create(**content)
-
-        return JsonResponse(
-            salesperson,
-            encoder=SalespersonListEncoder,
-            safe=False,
-        )
+        try:
+            salesperson = Salesperson.objects.create(**content)
+            return JsonResponse(
+                salesperson,
+                encoder=SalespersonListEncoder,
+                safe=False,
+            )
+        except Salesperson.DoesNotExist:
+            return JsonResponse(
+                {"message": "Salesperson does not exist"},
+                status=400,
+            )
 
 @require_http_methods(["GET", "POST"])
-def list_customers(request, id=None):
+def list_customers(request):
     if request.method == "GET":
         customers = Customer.objects.all()
         return JsonResponse(
@@ -80,15 +82,21 @@ def list_customers(request, id=None):
         )
     else:
         content = json.loads(request.body)
-        customer = Customer.objects.create(**content)
-        return JsonResponse(
-            customer,
-            encoder=CustomersListEncoder,
-            safe=False
-        )
+        try:
+            customer = Customer.objects.create(**content)
+            return JsonResponse(
+                customer,
+                encoder=CustomersListEncoder,
+                safe=False
+            )
+        except Customer.DoesNotExist:
+            return JsonResponse(
+                {"message": "Customer does not exist"},
+                status=400,
+            )
 
 @require_http_methods(["GET", "POST"])
-def list_sales(request, id=None):
+def list_sales(request):
     if request.method == "GET":
         sales = Sale.objects.all()
         return JsonResponse(
@@ -98,13 +106,12 @@ def list_sales(request, id=None):
         )
     else:
         content = json.loads(request.body)
-        print(content)
         try:
             automobile = AutomobileVO.objects.get(import_id=content["automobile"])
             content["automobile"] = automobile
         except AutomobileVO.DoesNotExist:
             return JsonResponse(
-                {"Message": "Automobile not working properly"},
+                {"message": "Automobile does not exist."},
                 status=400,
             )
         try:
@@ -112,7 +119,7 @@ def list_sales(request, id=None):
             content["salesperson"] = salesperson
         except Salesperson.DoesNotExist:
             return JsonResponse(
-                {"Message": "Salesperson not working properly"},
+                {"message": "Salesperson does not exist."},
                 status=400,
             )
         try:
@@ -120,7 +127,7 @@ def list_sales(request, id=None):
             content["customer"] = customer
         except Customer.DoesNotExist:
             return JsonResponse(
-                {"Message": "Customer not working properly"},
+                {"message": "Customer does not exist."},
                 status=400,
             )
 

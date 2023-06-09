@@ -247,7 +247,7 @@ Getting a list of automobiles returns a dictionary with the key "autos" set to a
 
 In the sales microservice, there are four models: AutomobileVO, Customer, Salesperson, and Sale. The first three mentioned all send data to the view that creates a new sale in order to create a new Sale object.
 
-The AutomobileVO is a value object and is constantly polling the inventory api database through the implementation of a poller and therefor has up-to-date data on the automobiles inventory to the second.
+The AutomobileVO is a value object and is constantly being updated by the poller which is polling the inventory api database and therefor has up-to-date data on the automobiles objects in the inventory api, down to the second.
 
 ## Accessing Endpoints to Send and View Data through Insomnia:
 
@@ -323,7 +323,7 @@ Return value of creating a salesperson:
 ```
 {
 	"id": 1,
-	"name": "Liz",
+	"name": "Tony",
 	"employee_number": 1
 }
 ```
@@ -335,7 +335,7 @@ List all salespeople return value:
 	"salespeople": [
 		{
 			"id": 1,
-			"name": "Jane Doe",
+			"name": "Oliver Twist",
 			"employee_number": 1
 		}
 	]
@@ -381,26 +381,20 @@ Create a new sale:
 
 ```
   {
-	"id": 44,
 	"price": 88888,
-	"vin": {
-		"vin": "2922200198"
+	"automobile": {
+		"id": 11
 	},
 	"salesperson": {
-		"id": 11,
-		"name": "Tobin",
-		"employee_number": 3
+		"id": 11
 	},
 	"customer": {
-		"id",
-		"name": "Gary Gifford",
-		"address": "1549 Bend Way",
-		"phone_number": "3490002361"
+     "id": 13
 	}
 }
 ```
 
-Show a salesperson's salesrecord return value:
+Return value of creating a new sale:
 
 ```
 {

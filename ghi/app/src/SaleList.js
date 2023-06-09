@@ -11,7 +11,6 @@ function SalesList(props) {
 
 
     const handleSalespersonFilterChange = () => {
-        console.log(allSales)
         const filteredSales = allSales.filter(sale => sale.salesperson.id === parseInt(searchedSalesperson));
 
         if (searchedSalesperson) {
@@ -46,10 +45,9 @@ function SalesList(props) {
     }
 
     useEffect(() => {
-        // console.log(searchedSalesperson);
         handleSalespersonFilterChange();
     },[searchedSalesperson, allSales]);
-    // [searchedSalesperson, sales]
+    
 
     useEffect(() => {
         getSales();
