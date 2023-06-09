@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function AutomobileList(props){
 
     function yesNo(boolean) {
-        if (boolean === true) {
+        if (boolean === "true") {
             return "Yes"
         }
         else {

@@ -132,6 +132,7 @@ def list_sales(request):
             )
 
         sales = Sale.objects.create(**content)
+
         return JsonResponse(
             sales,
             encoder=SalesListEncoder,

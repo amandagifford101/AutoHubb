@@ -226,3 +226,16 @@ def api_vehicle_model(request, pk):
             response = JsonResponse({"message": "Does not exist"})
             response.status_code = 404
             return response
+
+@require_http_methods(["PUT"])
+def api_change_sold_status(request, id):
+    if request.method == "PUT":
+        try:
+            Automobile.objects.filter(id=id).update(sold=True)
+            return JsonResponse(
+                {"message": "sold status updated to true"},
+            )
+        except Automobile.DoesNotExist:
+            return JsonResponse(
+                {"message": "automobile does not exist"},
+            )

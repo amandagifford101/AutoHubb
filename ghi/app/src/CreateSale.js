@@ -74,6 +74,8 @@ function SaleForm(props) {
         data.automobile = filteredAutomobile;
         data.salesperson = salesperson;
         data.price = price;
+
+
         const salesUrl = "http://localhost:8090/api/sales/";
         const fetchConfig = {
             method: "post",
@@ -82,14 +84,21 @@ function SaleForm(props) {
                 'Content-Type': 'application/json',
             },
         };
-
         const response = await fetch(salesUrl, fetchConfig);
+
         if (response.ok) {
+            const soldUrl = `http://localhost:8100/api/automobiles/${filteredAutomobile}/sold/`
+            const fetchConfig2 = {
+                method: "put",
+            }
+            const response2 = await fetch(soldUrl, fetchConfig2);
+
             setCustomer('');
             setFilteredAutomobile('');
             setSalesperson('');
             setPrice('');
             props.getSales();
+            props.getAutomobiles();
         }
 
     }
