@@ -40,13 +40,11 @@ function CreateTechnician(props) {
         };
         const response = await fetch(technicianUrl, fetchConfig);
         if (response.ok) {
-            const newTechnician = await response.json();
-            console.log(newTechnician);
-            props.getTechnicians();
-
+            
             setFirstName('');
             setLastName('');
             setEmployeeID('');
+            props.getTechnicians();
         };
     }
 
