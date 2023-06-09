@@ -53,14 +53,13 @@ function CreateAppointment(props) {
         };
         const response = await fetch(apptUrl, fetchConfig);
         if (response.ok) {
-            const newAppointment = await response.json();
-            props.getAppointments()
-
+            
             setVin('');
             setCustomer('');
             setDateTime('');
             setTechnician('');
             setReason('');
+            props.getAppointments()
         }
     }
 

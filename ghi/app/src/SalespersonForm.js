@@ -40,11 +40,11 @@ function SalespersonForm(props) {
 
         const response = await fetch(salespersonUrl, fetchConfig);
         if (response.ok) {
-            props.getSalespeople();
-
+            
             setFirstName('');
             setLastName('');
             setEmployeeId('');
+            props.getSalespeople();
         }
 
     }

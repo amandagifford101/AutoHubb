@@ -47,12 +47,12 @@ function CustomerForm(props) {
 
         const response = await fetch(customerUrl, fetchConfig);
         if (response.ok) {
-            props.getCustomers()
-
+            
             setFirstName('');
             setLastName('');
             setAddress('');
             setPhoneNumber('');
+            props.getCustomers()
         }
 
     }

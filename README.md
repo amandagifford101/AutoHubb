@@ -16,7 +16,7 @@ Team:
 3. Third, please build and run the project using Docker with the following commands:
 
 ```
-    docker volume create two-shot-pgdata
+    docker volume create beta-data
     docker-compose build
     docker-compose up
 ```

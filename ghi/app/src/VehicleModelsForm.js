@@ -57,13 +57,11 @@ function VehicleModelForm(props) {
 
         const response = await fetch(vehicleModelUrl, fetchConfig);
         if (response.ok) {
-            const newVehicleModel = await response.json();
 
-            props.getVehicleModels();
             setName('');
             setManufacturer('');
             setPictureUrl('');
-
+            props.getVehicleModels();
         }
 
     }
