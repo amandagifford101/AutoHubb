@@ -4,6 +4,7 @@ function AppointmentHistory(props) {
 
     const [searchedVin, setSearchedVin] = useState('');
     const [appointments, setAppointments] = useState([]);
+    const [filterTerm, setFilterTerm] = useState('');
 
     async function getAppointments() {
         const url = "http://localhost:8080/api/appointments/";
@@ -26,11 +27,19 @@ function AppointmentHistory(props) {
 
     function handleSearchSubmit(event) {
         event.preventDefault();
-        const data = props.appointments.filter(appointment => appointment.vin === searchedVin);
-        if (searchedVin) {
-            setAppointments(data);
+        setFilterTerm(searchedVin);
+        setSearchedVin('');
+    }
+
+    function filterList() {
+        if (filterTerm.length > 0){
+            return appointments.filter(appointment => appointment.vin === filterTerm)
+        }
+        else {
+            return appointments
         }
     }
+
 
     function isVip(vin) {
         let sold = [];
@@ -67,15 +76,11 @@ function AppointmentHistory(props) {
     return (
         <>
         <h1>Service History</h1>
-        {/* <div className="input-group mb-3">
-            <form onSubmit={handleSearchSubmit()} >
-                <input type="text" value={searchedVin} onChange={handleSearch} className="form-control" placeholder="Filter list by VIN" name="search" id="search" aria-describedby="inputGroup-sizing-default" />
-            </form>
-        </div> */}
         <form onSubmit={handleSearchSubmit}>
             <div className="input-group mb-3">
                 <input type="text" value={searchedVin} onChange={handleSearch} className="form-control" placeholder="Search by VIN" aria-label="vinSearch" aria-describedby="button-addon2" />
                 <button className="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                <button className="btn btn-outline-secondary" type="submit">See All</button>
             </div>
         </form>
         <table className="table table-striped">
@@ -92,7 +97,7 @@ function AppointmentHistory(props) {
                 </tr>
             </thead>
             <tbody>
-                {appointments.map(appointment => {
+                {filterList().map(appointment => {
                     return (
                         <tr key={appointment.id}>
                             <td>{ appointment.vin }</td>
