@@ -13,7 +13,7 @@ function SalesList(props) {
     const handleSalespersonFilterChange = () => {
         console.log(allSales)
         const filteredSales = allSales.filter(sale => sale.salesperson.id === parseInt(searchedSalesperson));
-       
+
         if (searchedSalesperson) {
             setSales(filteredSales);
         }
@@ -56,6 +56,24 @@ function SalesList(props) {
         getSalespeople();
     }, [])
 
+    const deleteSale = (id) => async () => {
+
+        try {
+            const response = await fetch(`http://localhost:8090/api/sale/${id}/delete/`, {
+                method: 'DELETE',
+              });
+            if (!response.ok) {
+                console.error("Deletion Failed")
+            } else {
+                setSales(sales.filter(sale => sale.id !== id));
+            }
+
+        } catch (error) {
+            console.error("Another fail", error)
+        }
+    }
+
+
     return (
         <>
         <div>
@@ -76,6 +94,7 @@ function SalesList(props) {
             <th>Price</th>
             <th>Salesperson</th>
             <th>Customer</th>
+            <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -86,6 +105,7 @@ function SalesList(props) {
                     <td>{ sale.price }</td>
                     <td>{ sale.salesperson.first_name } {sale.salesperson.last_name}</td>
                     <td>{ sale.customer.first_name } { sale.customer.last_name }</td>
+                    <td><button onClick={deleteSale(sale.id)}>Delete</button></td>
                 </tr>
             );
             })}
