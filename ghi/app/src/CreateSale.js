@@ -85,7 +85,7 @@ function SaleForm(props) {
 
         const response = await fetch(salesUrl, fetchConfig);
         if (response.ok) {
-            const newSale = await response.json();
+            
             setCustomer('');
             setFilteredAutomobile('');
             setSalesperson('');

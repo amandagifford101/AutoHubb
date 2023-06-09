@@ -47,12 +47,12 @@ function CreateAutomobile(props) {
         const response = await fetch(autoUrl, fetchConfig);
         if (response.ok) {
             const newAutomobile = await response.json();
-            props.getAutomobiles()
-
+            
             setColor('');
             setYear('');
             setVin('');
             setModel('');
+            props.getAutomobiles()
         }
     }
 
