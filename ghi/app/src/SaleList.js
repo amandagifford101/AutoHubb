@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 function SalesList(props) {
-    // const [hasDeleted, setHasDeleted] = useState([false]);
     let tableClasses = 'table table-striped table-hover';
 
     const [ sales, setSales ] = useState([]);
@@ -71,7 +70,7 @@ function SalesList(props) {
             if (!response.ok) {
                 console.error("Deletion Failed")
             } else {
-                setSales(sales.filter(sale => sale.id !== id));
+                getSales();
             }
 
         } catch (error) {

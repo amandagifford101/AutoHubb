@@ -63,6 +63,7 @@ function VehicleModelForm(props) {
             setName('');
             setManufacturer('');
             setPictureUrl('');
+
         }
 
     }

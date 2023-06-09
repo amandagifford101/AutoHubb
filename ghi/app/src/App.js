@@ -26,6 +26,16 @@ function App(props) {
   const [ manufacturers, setManufacturers ] = useState([]);
   const [ customers, setCustomers ] = useState([]);
   const [ salespeople, setSalespeople ] = useState([]);
+  const [ sales, setSales ] = useState([]);
+
+  async function getSales() {
+    const url = 'http://localhost:8090/api/sales/';
+    const response = await fetch(url);
+    if (response.ok) {
+        const data = await response.json()
+        setSales(data.sales);
+    }
+}
 
   async function getSalespeople() {
       const url = 'http://localhost:8090/api/salespeople/';
@@ -99,6 +109,7 @@ function App(props) {
   }
 
   useEffect(() => {
+    getSales();
     getVehicleModels();
     getManufacturers();
     getAutomobiles();
@@ -135,8 +146,8 @@ function App(props) {
             <Route path="create" element={<CustomerForm getCustomers={getCustomers} />} />
           </Route>
           <Route path="sales" >
-            <Route index element={<SalesList />} />
-            <Route path="create" element={<SaleForm getAutomobiles={getAutomobiles} automobiles={automobiles} />} />
+            <Route index element={<SalesList sales={sales} />} />
+            <Route path="create" element={<SaleForm getSales={getSales} getAutomobiles={getAutomobiles} automobiles={automobiles} />} />
           </Route>
           <Route path="technicians">
             <Route index element={<TechnicianList getTechnicians={getTechnicians} technicians={technicians} />} />
