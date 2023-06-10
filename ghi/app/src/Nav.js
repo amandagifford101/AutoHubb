@@ -13,8 +13,8 @@ function Nav() {
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Inventory</a>
               <ul className="dropdown-menu">
-                <li><NavLink className="dropdown-item" to="/manufacturers">Manunfacturers</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/manufacturers/create">Add Madufacturer</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/manufacturers">Manufacturers</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/manufacturers/create">Add Manufacturer</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/models">Models</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/models/create">Add Model</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/automobiles">Vehicles</NavLink></li>

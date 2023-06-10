@@ -78,8 +78,8 @@ function AppointmentHistory(props) {
         <h1>Service History</h1>
         <form onSubmit={handleSearchSubmit}>
             <div className="input-group mb-3">
-                <input type="text" value={searchedVin} onChange={handleSearch} className="form-control" placeholder="Search by VIN" aria-label="vinSearch" aria-describedby="button-addon2" />
-                <button className="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                <input type="text" value={searchedVin} onChange={handleSearch} className="form-control" placeholder="Filter by 17-digit VIN" aria-label="vinSearch" aria-describedby="button-addon2" />
+                <button className="btn btn-outline-secondary" type="submit" id="button-addon2">Filter</button>
                 <button className="btn btn-outline-secondary" type="submit">See All</button>
             </div>
         </form>

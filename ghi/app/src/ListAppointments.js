@@ -45,7 +45,6 @@ function AppointmentList(props){
             };
             const response = await fetch(apptUrl, fetchConfig);
             if (response.ok) {
-                console.log("appointment canceled")
                 props.getAppointments()
             }
         }
@@ -63,7 +62,6 @@ function AppointmentList(props){
             };
             const response = await fetch(apptUrl, fetchConfig);
             if (response.ok) {
-                console.log("appointment finished")
                 props.getAppointments()
             }
         }

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 
 function VehicleModelForm(props) {
-    const [name, setName] = useState([]);
-    const [pictureUrl, setPictureUrl] = useState([]);
-    const [manufacturer, setManufacturer] = useState([]);
+    const [name, setName] = useState('');
+    const [pictureUrl, setPictureUrl] = useState('');
+    const [manufacturer, setManufacturer] = useState('');
     const [manufacturers, setManufacturers] = useState([]);
 
     const fetchData = async () => {
@@ -96,7 +96,7 @@ function VehicleModelForm(props) {
                     </div>
                     <div className="col">
                         <div className="form-floating mb-3">
-                        <select onChange={handleManufacturerChange} name="manufacturer" id="manufacturer" className="form-select">
+                        <select onChange={handleManufacturerChange} value={manufacturer} name="manufacturer" id="manufacturer" className="form-select">
                         <option value="">Manufacturer</option>
                             {
                                 manufacturers.map(manufacturer => {
